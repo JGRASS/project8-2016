@@ -9,7 +9,8 @@ import valute.Valuta;
 
 public class Menjacnica implements MenjacnicaInterfejs {
 
-	LinkedList<Valuta> valute;
+
+	private LinkedList<Valuta> valute;
 
 	@Override
 	public void dodajKurs(Valuta valuta, GregorianCalendar datum, double prodajni, double srednji, double kupovni) {
@@ -19,23 +20,47 @@ public class Menjacnica implements MenjacnicaInterfejs {
 		k.setProdajni(prodajni);
 		k.setSrednji(srednji);
 		for (int i = 0; i < valute.size(); i++) {
-			if (valute.get(i) != null && valute.get(i).equals(valuta)) {
-				valute.get(i).getKursevi().addFirst(k);
-				break;
+
+			if (valute.get(i) != null) {
+				if (valute.get(i).equals(valuta)) {
+					valute.get(i).getKursevi().addLast(k);
+					break;
+				}
 			}
 		}
 	}
 
 	@Override
 	public void brisiKurs(Valuta valuta, GregorianCalendar datum) {
-		// TODO Auto-generated method stub
 
+		for (int i = 0; i < valute.size(); i++) {
+			if (valute.get(i) != null) {
+				if (valute.get(i).equals(valuta)) {
+					for (int j = 0; j < valute.get(i).getKursevi().size(); j++) {
+						Kurs k = valute.get(i).getKursevi().get(j);
+						if (k.getDatum().equals(datum)) {
+							valute.get(i).getKursevi().remove(j);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	@Override
 	public Kurs pronadjiKurs(Valuta valuta, GregorianCalendar datum) {
-		// TODO Auto-generated method stub
+		for (int i = 0; i < valute.size(); i++) {
+			if (valute.get(i) != null) {
+				if (valute.get(i).equals(valuta)) {
+					for (int j = 0; j < valute.get(i).getKursevi().size(); j++) {
+						Kurs k = valute.get(i).getKursevi().get(j);
+						if (k.getDatum().equals(datum)) {
+							return k;
+						}
+					}
+				}
+			}
+		}
 		return null;
 	}
-
 }
