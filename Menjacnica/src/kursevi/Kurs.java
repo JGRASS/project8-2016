@@ -12,6 +12,9 @@ public class Kurs {
 	}
 
 	public void setKupovni(double kupovni) {
+		if (kupovni <= 0) {
+			throw new RuntimeException("Greska pri unosu kupovnog kursa!");
+		}
 		this.kupovni = kupovni;
 	}
 
@@ -20,6 +23,9 @@ public class Kurs {
 	}
 
 	public void setProdajni(double prodajni) {
+		if (prodajni <= 0) {
+			throw new RuntimeException("Greska pri unosu prodajnog kursa!");
+		}
 		this.prodajni = prodajni;
 	}
 
@@ -28,6 +34,9 @@ public class Kurs {
 	}
 
 	public void setSrednji(double srednji) {
+		if (srednji <= 0) {
+			throw new RuntimeException("Greska pri unosu srednjeg kursa!");
+		}
 		this.srednji = srednji;
 	}
 
@@ -36,6 +45,9 @@ public class Kurs {
 	}
 
 	public void setDatum(GregorianCalendar datum) {
+		if (datum == null) {
+			throw new RuntimeException("Morate uneti datum!");
+		}
 		this.datum = datum;
 	}
 
@@ -65,6 +77,8 @@ public class Kurs {
 
 	@Override
 	public String toString() {
-		return "Kurs [kupovni: " + kupovni + ", prodajni: " + prodajni + ", srednji: " + srednji + ", datum: " + datum.getTime() + "]";
+		return "Kurs [kupovni: " + kupovni + ", prodajni: " + prodajni + ", srednji: " + srednji + ", datum: "
+				+ datum.getTime() + "]";
 	}
 }
+
