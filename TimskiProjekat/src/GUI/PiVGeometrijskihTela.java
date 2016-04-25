@@ -1,3 +1,4 @@
+package GUI;
 import interfejs.PiV;
 
 public class PiVGeometrijskihTela implements PiV {
