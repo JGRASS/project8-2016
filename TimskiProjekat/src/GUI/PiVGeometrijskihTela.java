@@ -55,7 +55,7 @@ public class PiVGeometrijskihTela implements PiV {
 
 	@Override
 	public double zapreminaKupe(double r, double H) {
-		return 1/3*r*r*3.14*H;
+		return (r*r*3.14*H)/3;
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class PiVGeometrijskihTela implements PiV {
 
 	@Override
 	public double zapreminaPiramide(double B, double H) {
-		return 1/3*B*H;
+		return (B*H)/3;
 	}
 
 }

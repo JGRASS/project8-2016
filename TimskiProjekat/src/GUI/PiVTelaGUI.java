@@ -17,7 +17,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
 public class PiVTelaGUI extends JFrame {
-	
+
 	PiVGeometrijskihTela o1 = new PiVGeometrijskihTela();
 
 	private JPanel contentPane;
@@ -78,6 +78,7 @@ public class PiVTelaGUI extends JFrame {
 		contentPane.add(getLblUnesiOmotac());
 		contentPane.add(getPolje3());
 	}
+
 	private JLabel getLblUnesiteNazivTela() {
 		if (lblUnesiteNazivTela == null) {
 			lblUnesiteNazivTela = new JLabel("Izaberite geometrijsko telo:");
@@ -85,90 +86,368 @@ public class PiVTelaGUI extends JFrame {
 		}
 		return lblUnesiteNazivTela;
 	}
+
 	private JComboBox getComboBox() {
 		if (comboBox == null) {
 			comboBox = new JComboBox();
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Kocka", "Kvadar", "Lopta", "Valjak", "Prizma", "Piramida"}));
+			comboBox.setModel(new DefaultComboBoxModel(
+					new String[] { "Kocka", "Kvadar", "Lopta", "Valjak", "Kupa", "Prizma", "Piramida" }));
 			comboBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if(comboBox.getSelectedItem().equals("Kocka")){
+					
+					if (comboBox.getSelectedItem().equals("Kocka")) {
 						lblUnesi.setText("Unesite duzinu ivice kocke: ");
 						lblUnesi.setVisible(true);
+						polje1.setText(null);
 						polje1.setVisible(true);
-						
+						lblUnesiBazu.setVisible(false);
+						polje2.setText(null);
+						polje2.setVisible(false);
+						lblUnesiOmotac.setVisible(false);
+						polje3.setText(null);
+						polje3.setVisible(false);
+
 						btnPovrsina.setVisible(true);
 						btnZapremina.setVisible(true);
-						
+
 						btnPovrsina.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent arg0) {
-								
+
 								String a = polje1.getText();
 								double rez = Double.parseDouble(a);
-							    double p = o1.povrsinaKocke(rez);
-							    String rezultat = String.valueOf(p);
-							    poljeP.setText(rezultat);
-							    
-							    lblPovrsinaJe.setVisible(true);
-							    poljeP.setVisible(true);
-								
-								
+								double p = o1.povrsinaKocke(rez);
+								String rezultat = String.valueOf(p);
+								poljeP.setText(rezultat);
+
+								lblPovrsinaJe.setVisible(true);
+								poljeP.setVisible(true);
+
 							}
 						});
-						
+
 						btnZapremina.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								
+
 								String a = polje1.getText();
 								double rez = Double.parseDouble(a);
-							    double p = o1.zapreminaKocke(rez);
-							    String rezultat = String.valueOf(p);
-							    PoljeZ.setText(rezultat);
-							    
-							    lblZapreminaJe.setVisible(true);
-							    PoljeZ.setVisible(true);
+								double p = o1.zapreminaKocke(rez);
+								String rezultat = String.valueOf(p);
+								PoljeZ.setText(rezultat);
+
+								lblZapreminaJe.setVisible(true);
+								PoljeZ.setVisible(true);
 							}
 						});
-					    
+
 					}
-					//........................................................................................
-					
-					if(comboBox.getSelectedItem().equals("Lopta")){
-					
+					// ........................................................................................
+
+					if (comboBox.getSelectedItem().equals("Lopta")) {
+
+						lblUnesi.setText("Unesi poluprecnik lopte: ");
 						lblUnesi.setVisible(true);
+						polje1.setText(null);
 						polje1.setVisible(true);
+						lblUnesiBazu.setVisible(false);
+						polje2.setText(null);
+						polje2.setVisible(false);
+						lblUnesiOmotac.setVisible(false);
+						polje3.setText(null);
+						polje3.setVisible(false);
+
+						btnPovrsina.setVisible(true);
+						btnZapremina.setVisible(true);
+						
+						poljeP.setText(null);
+						PoljeZ.setText(null);
+
+						btnPovrsina.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+
+								double r = Double.parseDouble(polje1.getText());
+								double p = o1.povrsinaLopte(r);
+								String rezultat = String.valueOf(p);
+								poljeP.setText(rezultat);
+
+								lblPovrsinaJe.setVisible(true);
+								poljeP.setVisible(true);
+
+							}
+						});
+
+						btnZapremina.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+
+								String a = polje1.getText();
+								double rez = Double.parseDouble(a);
+								double p = o1.zapreminaLopte(rez);
+								String rezultat = String.valueOf(p);
+								PoljeZ.setText(rezultat);
+
+								lblZapreminaJe.setVisible(true);
+								PoljeZ.setVisible(true);
+							}
+						});
+					}
+					//..........................................................................................
+					if (comboBox.getSelectedItem().equals("Kvadar")) {
+
+						lblUnesi.setText("Unesi ivicu a: ");
+						lblUnesi.setVisible(true);
+						polje1.setText(null);
+						polje1.setVisible(true);
+						lblUnesiBazu.setText("Unesi ivicu b: ");
+						lblUnesiBazu.setVisible(true);
+						polje2.setText(null);
+						polje2.setVisible(true);
+						lblUnesiOmotac.setText("Unesi ivicu c: ");
+						lblUnesiOmotac.setVisible(true);
+						polje3.setText(null);
+						polje3.setVisible(true);
+
+						btnPovrsina.setVisible(true);
+						btnZapremina.setVisible(true);
+						
+						
+						btnPovrsina.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+
+								double a = Double.parseDouble(polje1.getText());
+								double b = Double.parseDouble(polje2.getText());
+								double c = Double.parseDouble(polje3.getText());
+								
+								double p = o1.povrsinaKvadra(a,b,c);
+								String rezultat = String.valueOf(p);
+								poljeP.setText(rezultat);
+
+								lblPovrsinaJe.setVisible(true);
+								poljeP.setVisible(true);
+
+							}
+						});
+
+						btnZapremina.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+
+								double a = Double.parseDouble(polje1.getText());
+								double b = Double.parseDouble(polje2.getText());
+								double c = Double.parseDouble(polje3.getText());
+								
+								double p = o1.zapreminaKvadra(a,b,c);
+								String rezultat = String.valueOf(p);
+								PoljeZ.setText(rezultat);
+
+								lblZapreminaJe.setVisible(true);
+								PoljeZ.setVisible(true);
+							}
+						});
+					
+					}
+					//.........................................................................................
+					if (comboBox.getSelectedItem().equals("Valjak")) {
+
+						lblUnesi.setVisible(true);
+						polje1.setText(null);
+						polje1.setVisible(true);
+						lblUnesiBazu.setText("Unesi visinu valjka: ");
+						lblUnesiBazu.setVisible(true);
+						polje2.setText(null);
+						polje2.setVisible(true);
+						lblUnesiOmotac.setVisible(false);
+						polje3.setText(null);
+						polje3.setVisible(false);
+
 						
 						btnPovrsina.setVisible(true);
 						btnZapremina.setVisible(true);
 						
+						
 						btnPovrsina.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent arg0) {
+
+								double r = Double.parseDouble(polje1.getText());
+								double H = Double.parseDouble(polje2.getText());
 								
-								String a = polje1.getText();
-								double rez = Double.parseDouble(a);
-							    double p = o1.povrsinaLopte(rez);
-							    String rezultat = String.valueOf(p);
-							    poljeP.setText(rezultat);
-							    
-							    lblPovrsinaJe.setVisible(true);
-							    poljeP.setVisible(true);
+								double p = o1.povrsinaValjka(r,H);
+								String rezultat = String.valueOf(p);
+								poljeP.setText(rezultat);
+
+								lblPovrsinaJe.setVisible(true);
+								poljeP.setVisible(true);
+
+							}
+						});
+
+						btnZapremina.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+
+								double r = Double.parseDouble(polje1.getText());
+								double H = Double.parseDouble(polje2.getText());
 								
-								
+								double p = o1.zapreminaValjka(r,H);
+								String rezultat = String.valueOf(p);
+								PoljeZ.setText(rezultat);
+
+								lblZapreminaJe.setVisible(true);
+								PoljeZ.setVisible(true);
 							}
 						});
 						
-						btnZapremina.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
+					}
+					//...........................................................................................
+					if (comboBox.getSelectedItem().equals("Kupa")) {
+
+						lblUnesi.setText("Unesi poluprecnik baze kupe: ");
+						lblUnesi.setVisible(true);
+						polje1.setText(null);
+						polje1.setVisible(true);
+						lblUnesiBazu.setText("Unesi visinu kupe: ");
+						lblUnesiBazu.setVisible(true);
+						polje2.setText(null);
+						polje2.setVisible(true);
+						lblUnesiOmotac.setText("Unesi izvodnicu kupe: ");
+						lblUnesiOmotac.setVisible(true);
+						polje3.setText(null);
+						polje3.setVisible(true);
+
+						
+						btnPovrsina.setVisible(true);
+						btnZapremina.setVisible(true);
+						
+						
+						btnPovrsina.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+
+								double r = Double.parseDouble(polje1.getText());
+								double s = Double.parseDouble(polje3.getText());
 								
-								String a = polje1.getText();
-								double rez = Double.parseDouble(a);
-							    double p = o1.zapreminaLopte(rez);
-							    String rezultat = String.valueOf(p);
-							    PoljeZ.setText(rezultat);
-							    
-							    lblZapreminaJe.setVisible(true);
-							    PoljeZ.setVisible(true);
+								double p = o1.povrsinaKupe(r,s);
+								String rezultat = String.valueOf(p);
+								poljeP.setText(rezultat);
+
+								lblPovrsinaJe.setVisible(true);
+								poljeP.setVisible(true);
+
 							}
 						});
+
+						btnZapremina.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+
+								double r = Double.parseDouble(polje1.getText());
+								double H = Double.parseDouble(polje2.getText());
+								
+								double p = o1.zapreminaKupe(r,H);
+								String rezultat = String.valueOf(p);
+								PoljeZ.setText(rezultat);
+
+								lblZapreminaJe.setVisible(true);
+								PoljeZ.setVisible(true);
+							}
+						});
+						
+					}
+					//........................................................................
+					if (comboBox.getSelectedItem().equals("Prizma")) {
+
+						lblUnesi.setText("Unesi visinu prizme: ");
+						lblUnesi.setVisible(true);
+						polje1.setText(null);
+						polje1.setVisible(true);
+						lblUnesiBazu.setVisible(true);
+						polje2.setText(null);
+						polje2.setVisible(true);
+						lblUnesiOmotac.setVisible(true);
+						polje3.setText(null);
+						polje3.setVisible(true);
+
+						
+						btnPovrsina.setVisible(true);
+						btnZapremina.setVisible(true);
+						
+						
+						btnPovrsina.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+
+								double B = Double.parseDouble(polje2.getText());
+								double M = Double.parseDouble(polje3.getText());
+								
+								double p = o1.povrsinaPrizme(B,M);
+								String rezultat = String.valueOf(p);
+								poljeP.setText(rezultat);
+
+								lblPovrsinaJe.setVisible(true);
+								poljeP.setVisible(true);
+
+							}
+						});
+
+						btnZapremina.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+
+								double H = Double.parseDouble(polje1.getText());
+								double B = Double.parseDouble(polje2.getText());
+								
+								double p = o1.zapreminaPrizme(B,H);
+								String rezultat = String.valueOf(p);
+								PoljeZ.setText(rezultat);
+
+								lblZapreminaJe.setVisible(true);
+								PoljeZ.setVisible(true);
+							}
+						});
+						
+					}
+					//..................................................................................
+					if (comboBox.getSelectedItem().equals("Piramida")) {
+
+						lblUnesi.setText("Unesi visinu piramide: ");
+						lblUnesi.setVisible(true);
+						polje1.setText(null);
+						polje1.setVisible(true);
+						lblUnesiBazu.setVisible(true);
+						polje2.setText(null);
+						polje2.setVisible(true);
+						lblUnesiOmotac.setVisible(true);
+						polje3.setText(null);
+						polje3.setVisible(true);
+
+						
+						btnPovrsina.setVisible(true);
+						btnZapremina.setVisible(true);
+						
+						
+						btnPovrsina.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+
+								double B = Double.parseDouble(polje2.getText());
+								double M = Double.parseDouble(polje3.getText());
+								
+								double p = o1.povrsinaPiramide(B,M);
+								String rezultat = String.valueOf(p);
+								poljeP.setText(rezultat);
+
+								lblPovrsinaJe.setVisible(true);
+								poljeP.setVisible(true);
+
+							}
+						});
+
+						btnZapremina.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+
+								double H = Double.parseDouble(polje1.getText());
+								double B = Double.parseDouble(polje2.getText());
+								
+								double p = o1.zapreminaPiramide(B,H);
+								String rezultat = String.valueOf(p);
+								PoljeZ.setText(rezultat);
+
+								lblZapreminaJe.setVisible(true);
+								PoljeZ.setVisible(true);
+							}
+						});
+						
 					}
 				}
 			});
@@ -176,6 +455,7 @@ public class PiVTelaGUI extends JFrame {
 		}
 		return comboBox;
 	}
+
 	private JLabel getLblUnesi() {
 		if (lblUnesi == null) {
 			lblUnesi = new JLabel("Unesi poluprecnik: ");
@@ -184,6 +464,7 @@ public class PiVTelaGUI extends JFrame {
 		}
 		return lblUnesi;
 	}
+
 	private JTextField getPolje1() {
 		if (polje1 == null) {
 			polje1 = new JTextField();
@@ -193,6 +474,7 @@ public class PiVTelaGUI extends JFrame {
 		}
 		return polje1;
 	}
+
 	private JLabel getLblPovrsinaJe() {
 		if (lblPovrsinaJe == null) {
 			lblPovrsinaJe = new JLabel("Povrsina je: ");
@@ -201,6 +483,7 @@ public class PiVTelaGUI extends JFrame {
 		}
 		return lblPovrsinaJe;
 	}
+
 	private JTextField getPoljeP() {
 		if (poljeP == null) {
 			poljeP = new JTextField();
@@ -210,6 +493,7 @@ public class PiVTelaGUI extends JFrame {
 		}
 		return poljeP;
 	}
+
 	private JLabel getLblZapreminaJe() {
 		if (lblZapreminaJe == null) {
 			lblZapreminaJe = new JLabel("Zapremina je: ");
@@ -218,6 +502,7 @@ public class PiVTelaGUI extends JFrame {
 		}
 		return lblZapreminaJe;
 	}
+
 	private JTextField getPoljeZ() {
 		if (PoljeZ == null) {
 			PoljeZ = new JTextField();
@@ -227,24 +512,27 @@ public class PiVTelaGUI extends JFrame {
 		}
 		return PoljeZ;
 	}
+
 	private JButton getBtnPovrsina() {
 		if (btnPovrsina == null) {
 			btnPovrsina = new JButton("POVRSINA");
-			
+
 			btnPovrsina.setVisible(false);
 			btnPovrsina.setBounds(20, 154, 105, 22);
 		}
 		return btnPovrsina;
 	}
+
 	private JButton getBtnZapremina() {
 		if (btnZapremina == null) {
 			btnZapremina = new JButton("ZAPREMINA");
-			
+
 			btnZapremina.setVisible(false);
 			btnZapremina.setBounds(176, 154, 115, 22);
 		}
 		return btnZapremina;
 	}
+
 	private JLabel getLblUnesiBazu() {
 		if (lblUnesiBazu == null) {
 			lblUnesiBazu = new JLabel("Unesi bazu: ");
@@ -253,6 +541,7 @@ public class PiVTelaGUI extends JFrame {
 		}
 		return lblUnesiBazu;
 	}
+
 	private JTextField getPolje2() {
 		if (polje2 == null) {
 			polje2 = new JTextField();
@@ -262,6 +551,7 @@ public class PiVTelaGUI extends JFrame {
 		}
 		return polje2;
 	}
+
 	private JLabel getLblUnesiOmotac() {
 		if (lblUnesiOmotac == null) {
 			lblUnesiOmotac = new JLabel("Unesi omotac");
@@ -270,6 +560,7 @@ public class PiVTelaGUI extends JFrame {
 		}
 		return lblUnesiOmotac;
 	}
+
 	private JTextField getPolje3() {
 		if (polje3 == null) {
 			polje3 = new JTextField();
