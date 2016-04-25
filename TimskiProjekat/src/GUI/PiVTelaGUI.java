@@ -42,6 +42,7 @@ public class PiVTelaGUI extends JFrame {
 	private JMenuBar menuBar;
 	private JMenu mnFile;
 	private JMenuItem mntmRefresh;
+	private JMenuItem mntmNew;
 
 	/**
 	 * Launch the application.
@@ -201,7 +202,7 @@ public class PiVTelaGUI extends JFrame {
 					}
 					//..........................................................................................
 					if (comboBox.getSelectedItem().equals("Kvadar")) {
-
+						
 						lblUnesi.setText("Unesi ivicu a: ");
 						lblUnesi.setVisible(true);
 						polje1.setText(null);
@@ -590,6 +591,7 @@ public class PiVTelaGUI extends JFrame {
 	private JMenu getMnFile() {
 		if (mnFile == null) {
 			mnFile = new JMenu("File");
+			mnFile.add(getMntmNew());
 			mnFile.add(getMntmRefresh());
 		}
 		return mnFile;
@@ -623,5 +625,18 @@ public class PiVTelaGUI extends JFrame {
 			});
 		}
 		return mntmRefresh;
+	}
+	private JMenuItem getMntmNew() {
+		if (mntmNew == null) {
+			mntmNew = new JMenuItem("New window");
+			mntmNew.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Pomocni pom = new Pomocni();
+					
+					pom.newScreen();
+				}
+			});
+		}
+		return mntmNew;
 	}
 }
