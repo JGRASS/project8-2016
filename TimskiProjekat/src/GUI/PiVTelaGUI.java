@@ -15,6 +15,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.Dimension;
 
 public class PiVTelaGUI extends JFrame {
 
@@ -35,6 +39,9 @@ public class PiVTelaGUI extends JFrame {
 	private JTextField polje2;
 	private JLabel lblUnesiOmotac;
 	private JTextField polje3;
+	private JMenuBar menuBar;
+	private JMenu mnFile;
+	private JMenuItem mntmRefresh;
 
 	/**
 	 * Launch the application.
@@ -56,9 +63,12 @@ public class PiVTelaGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public PiVTelaGUI() {
+		setSize(new Dimension(200, 100));
+		setResizable(false);
 		setTitle("Povrsina i zapremina geometrijskih tela");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -451,7 +461,7 @@ public class PiVTelaGUI extends JFrame {
 					}
 				}
 			});
-			comboBox.setBounds(285, 21, 86, 29);
+			comboBox.setBounds(205, 21, 86, 29);
 		}
 		return comboBox;
 	}
@@ -479,7 +489,7 @@ public class PiVTelaGUI extends JFrame {
 		if (lblPovrsinaJe == null) {
 			lblPovrsinaJe = new JLabel("Povrsina je: ");
 			lblPovrsinaJe.setVisible(false);
-			lblPovrsinaJe.setBounds(10, 199, 140, 14);
+			lblPovrsinaJe.setBounds(10, 196, 140, 14);
 		}
 		return lblPovrsinaJe;
 	}
@@ -488,7 +498,7 @@ public class PiVTelaGUI extends JFrame {
 		if (poljeP == null) {
 			poljeP = new JTextField();
 			poljeP.setVisible(false);
-			poljeP.setBounds(316, 196, 86, 20);
+			poljeP.setBounds(316, 193, 86, 20);
 			poljeP.setColumns(10);
 		}
 		return poljeP;
@@ -498,7 +508,7 @@ public class PiVTelaGUI extends JFrame {
 		if (lblZapreminaJe == null) {
 			lblZapreminaJe = new JLabel("Zapremina je: ");
 			lblZapreminaJe.setVisible(false);
-			lblZapreminaJe.setBounds(10, 224, 140, 14);
+			lblZapreminaJe.setBounds(10, 221, 140, 14);
 		}
 		return lblZapreminaJe;
 	}
@@ -569,5 +579,49 @@ public class PiVTelaGUI extends JFrame {
 			polje3.setColumns(10);
 		}
 		return polje3;
+	}
+	private JMenuBar getMenuBar_1() {
+		if (menuBar == null) {
+			menuBar = new JMenuBar();
+			menuBar.add(getMnFile());
+		}
+		return menuBar;
+	}
+	private JMenu getMnFile() {
+		if (mnFile == null) {
+			mnFile = new JMenu("File");
+			mnFile.add(getMntmRefresh());
+		}
+		return mnFile;
+	}
+	private JMenuItem getMntmRefresh() {
+		if (mntmRefresh == null) {
+			mntmRefresh = new JMenuItem("Refresh");
+			mntmRefresh.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					lblUnesi.setVisible(false);
+					polje1.setText(null);
+					polje1.setVisible(false);
+					lblUnesiBazu.setVisible(false);
+					polje2.setText(null);
+					polje2.setVisible(false);
+					lblUnesiOmotac.setVisible(false);
+					polje3.setText(null);
+					polje3.setVisible(false);
+					
+					btnPovrsina.setVisible(false);
+					btnZapremina.setVisible(false);
+					
+					lblPovrsinaJe.setVisible(false);
+					lblZapreminaJe.setVisible(false);
+					poljeP.setText(null);
+					poljeP.setVisible(false);
+					PoljeZ.setText(null);
+					PoljeZ.setVisible(false);
+					
+				}
+			});
+		}
+		return mntmRefresh;
 	}
 }
